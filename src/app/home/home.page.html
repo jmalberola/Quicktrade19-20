@@ -7,8 +7,28 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+
+  <ion-card>
+    <ion-input placeholder="Nombre" [(ngModel)]="nombre"></ion-input>
+    <ion-input placeholder="Precio" [(ngModel)]="precio"></ion-input>
+    <ion-textarea placeholder="Descripción" [(ngModel)]="descripcion"></ion-textarea>
+    <ion-button expand="block" (click)="insertar()">Insertar</ion-button>
+  </ion-card>
+
+  <ion-card *ngFor="let item of bocadillos">
+    <ion-card-header>
+      <ion-card-title>Bocadillo {{item.nombre}} ({{item.precio}} €)</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+        <ion-label> Descripción: </ion-label>
+        {{item.descripcion}}
+      <!--<img [src]="ruta" [style.width.px]="width"/>-->
+    <!--  <ion-button expand="block" (click)="cambiar_Oculto()">{{oculto ? "Mostrar" : "Ocultar"}} descripción</ion-button>-->
+      <!--<div *ngIf = "oculto == false">El bocadillo chivito es un bocadillo que lleva distintos ingredientes como tomate, lechuga o lomo.</div>-->
+      <ion-button expand="block" [routerLink]="['/details/',item.id]" routerDirection="forward">Detalle</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
 </ion-content>
